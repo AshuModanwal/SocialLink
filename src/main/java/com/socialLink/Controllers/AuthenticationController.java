@@ -22,6 +22,7 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<Map<String, String>> register(
             @Valid @RequestBody RegisterRequestBody body) {
+        System.out.println("register api is called");
         authService.register(body);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -38,6 +39,8 @@ public class AuthenticationController {
 
     @GetMapping("/send-email-verification-token")
     public ResponseEntity<Map<String, String>> sendEmailVerificationToken(HttpServletRequest request){
+
+        System.out.println("http://localhost:8080/auth/send-email-verification-token \n Api called");
 
         String authHeader = request.getHeader("Authorization");
         String token = null;

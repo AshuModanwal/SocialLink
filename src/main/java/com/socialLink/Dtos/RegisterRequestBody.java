@@ -7,24 +7,12 @@ import lombok.Data;
 
 @Data
 public class RegisterRequestBody {
-
-
-    @NotBlank(message = "userName is required")
-    private String userName;
-
-    @Email(message = "Email is required")
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email must be valid")
     private String email;
 
     @NotBlank(message = "password is required")
     private String password;
 
-    public RegisterRequestBody(String userName, String email, String password) {
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
-    }
 
-    public RegisterRequestBody() {
-        super();
-    }
 }

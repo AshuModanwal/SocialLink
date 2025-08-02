@@ -63,8 +63,17 @@ public class UserModel {
     private String coverPicture;
 
     @Column(name = "profileComplete")
-    private boolean profileComplete;
+    private boolean profileComplete=false;
 
     @Column(name = "about")
     private String about;
+
+
+    @Override
+    public String toString() {
+        return "UserModel{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
