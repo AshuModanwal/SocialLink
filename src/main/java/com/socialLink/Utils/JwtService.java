@@ -1,6 +1,5 @@
-package com.socialLink.Services.Impl;
+package com.socialLink.Utils;
 
-import com.socialLink.Services.JwtService;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -16,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 @Service
-public class JwtServiceImpl implements JwtService {
+public class JwtService {
 
     // Inject your short secret (e.g. "Ashutosh") from application.properties
     @Value("${jwt.secret}")
@@ -37,7 +36,6 @@ public class JwtServiceImpl implements JwtService {
         }
     }
 
-    @Override
     public String generateToken(String email) {
         Date now    = new Date();
         Date expiry = new Date(now.getTime() + 3_600_000);  // 1 hour
@@ -50,7 +48,6 @@ public class JwtServiceImpl implements JwtService {
                 .compact();
     }
 
-    @Override
     public String extractEmail(String token) {
         try {
             return Jwts.parserBuilder()

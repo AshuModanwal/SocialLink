@@ -5,7 +5,7 @@ import com.socialLink.Dtos.RegisterRequestBody;
 import com.socialLink.Models.UserModel;
 import com.socialLink.Repositories.UserRepository;
 import com.socialLink.Services.AuthenticationService;
-import com.socialLink.Services.JwtService;
+import com.socialLink.Utils.JwtService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -52,6 +52,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public String sendEmailVerificationToken(String token) {
+        String email = jwtService.extractEmail(token);
+        if(email==null)
+            throw new IllegalArgumentException("Token is invalid or expired");
+
+        UserModel user = userRepository.getUserByEmail(email);
+        if(user==null)
+            throw new IllegalArgumentException("User not found");
+
+
+
         return "";
     }
 
