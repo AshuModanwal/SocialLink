@@ -7,4 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 public interface UserRepository extends JpaRepository<UserModel, Integer> {
     UserModel getUserByEmail(String userEmail);
+    UserModel getUserById(int id);
+
 }

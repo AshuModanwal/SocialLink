@@ -16,11 +16,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
-
 
     @Autowired
     JwtService jwtService;
@@ -31,7 +31,12 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         String path = request.getServletPath();
-        return "/auth/register".equals(path) || "/auth/login".equals(path);
+        return List.of(
+                "/auth/register",
+                "/auth/login",
+                "/auth/validate-email-verification-token",   // <-- skip here
+                "/auth/validate-forget-password-token"
+        ).contains(path);
     }
 
     @Override

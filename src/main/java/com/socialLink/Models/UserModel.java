@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "users")                  // ← real table name
@@ -28,17 +29,17 @@ public class UserModel {
     private String emailVerificationToken;
 
     @Column(name = "emailVerificationTokenExpiryDate")
-    private LocalDateTime emailVerificationTokenExpiryDate;
+    private Date emailVerificationTokenExpiryDate;
 
     @JsonIgnore
     @Column(name = "password")
     private String password;
 
-    @Column(name = "passwordResetToken")
-    private String passwordResetToken;
+    @Column(name = "forgetPasswordToken")
+    private String forgetPasswordToken;
 
-    @Column(name = "passwordResetTokenExpiryDate")
-    private LocalDateTime passwordResetTokenExpiryDate;
+    @Column(name = "forgetPasswordTokenExpiryDate")
+    private Date forgetPasswordTokenExpiryDate;
 
     // override default naming for these too
     @Column(name = "firstName")
